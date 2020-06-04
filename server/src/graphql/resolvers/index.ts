@@ -1,4 +1,5 @@
 import { register, login } from './user';
+import { createPost } from './post';
 import { posts } from './post';
 
 const resolvers = {
@@ -9,6 +10,7 @@ const resolvers = {
   Mutation: {
     register,
     login,
+    createPost,
   },
 };
 

@@ -14,6 +14,9 @@ export class Post {
   id: number;
 
   @Column()
+  title: string;
+
+  @Column()
   body: string;
 
   @ManyToOne(type => User, user => user.posts)
