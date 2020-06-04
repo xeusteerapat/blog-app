@@ -48,3 +48,23 @@ export const createPost = async (
 
   return newPost;
 };
+
+export const deletePost = async (parent, { postId }, ctx, info) => {
+  const user = auth(ctx);
+
+  const postRepository = getRepository(Post);
+  const post = await postRepository.findOne({ id: postId });
+  const author = await postRepository.findOne({ where: { authorId: user.id } });
+
+  console.log(post);
+  console.log(author);
+
+  // if (user.id === post.) {
+  //   throw new Error('This post is not belong to this user')
+  // }
+
+  // await post
+
+  // if (user.username)
+  return 'Post delete';
+};

@@ -1,5 +1,5 @@
 import { register, login } from './user';
-import { createPost } from './post';
+import { createPost, deletePost } from './post';
 import { posts } from './post';
 
 const resolvers = {
@@ -11,6 +11,7 @@ const resolvers = {
     register,
     login,
     createPost,
+    deletePost,
   },
 };
 
