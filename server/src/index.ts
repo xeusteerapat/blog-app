@@ -1,17 +1,7 @@
-import { ApolloServer, gql } from 'apollo-server';
+import { ApolloServer } from 'apollo-server';
 import { createConnection } from 'typeorm';
-
-const typeDefs = gql`
-  type Query {
-    hello: String!
-  }
-`;
-
-const resolvers = {
-  Query: {
-    hello: () => 'Hello Graphql hahahahaha',
-  },
-};
+import typeDefs from './graphql/typeDefs';
+import resolvers from './graphql/resolvers';
 
 const server = new ApolloServer({
   typeDefs,
