@@ -1,7 +1,9 @@
 import { getRepository } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
+import { UserInputError } from 'apollo-server';
 import { User } from './../../entity/User';
+import { validateRegisterInput } from '../../utils/validator';
 
 import * as dotenv from 'dotenv';
 dotenv.config();
@@ -29,6 +31,20 @@ export const register = async (
   const userRepository = getRepository(User);
   const existingEmail = await userRepository.findOne({ email });
   const existingUsername = await userRepository.findOne({ username });
+
+  const { errors, valid } = validateRegisterInput(
+    username,
+    email,
+    password,
+    confirmPassword
+  );
+
+  console.log(valid);
+  console.log(errors);
+
+  if (!valid) {
+    throw new UserInputError('Errors', { errors });
+  }
 
   if (existingEmail) {
     throw new Error('Email already taken');
