@@ -3,7 +3,10 @@ import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import { UserInputError } from 'apollo-server';
 import { User } from './../../entity/User';
-import { validateRegisterInput } from '../../utils/validator';
+import {
+  validateRegisterInput,
+  validateLoginInput,
+} from '../../utils/validator';
 
 import * as dotenv from 'dotenv';
 dotenv.config();
@@ -39,9 +42,6 @@ export const register = async (
     confirmPassword
   );
 
-  console.log(valid);
-  console.log(errors);
-
   if (!valid) {
     throw new UserInputError('Errors', { errors });
   }
@@ -65,5 +65,34 @@ export const register = async (
     const token = generateToken(user);
 
     return { ...user, token };
+  }
+};
+
+export const login = async (parent, { username, password }, ctx, info) => {
+  const { errors, valid } = validateLoginInput(username, password);
+
+  if (!valid) {
+    throw new UserInputError('Errors', { errors });
+  }
+
+  const userRepository = getRepository(User);
+  const user = await userRepository.findOne({ username });
+
+  if (!user) {
+    throw new UserInputError('Username or password incorrect', { errors });
+  } else {
+    const isSuccess = await bcrypt.compare(password, user.password);
+
+    if (isSuccess) {
+      const token = generateToken(user);
+      const payload = {
+        id: user.id,
+        username: user.username,
+        token,
+      };
+      return payload;
+    } else {
+      throw new UserInputError('Username or password incorrect', { errors });
+    }
   }
 };
