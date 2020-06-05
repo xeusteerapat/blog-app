@@ -37,7 +37,6 @@ export const createPost = async (
     username: user.username,
   });
 
-  console.log('author', author);
   const newPost = await postRepository.create({
     title,
     body,
@@ -53,18 +52,16 @@ export const deletePost = async (parent, { postId }, ctx, info) => {
   const user = auth(ctx);
 
   const postRepository = getRepository(Post);
+
   const post = await postRepository.findOne({ id: postId });
-  const author = await postRepository.findOne({ where: { authorId: user.id } });
+  const postsWithAuthors = await postRepository.find({ relations: ['author'] });
 
-  console.log(post);
-  console.log(author);
+  const postTodelete = postsWithAuthors.filter(p => p.author.id === user.id);
 
-  // if (user.id === post.) {
-  //   throw new Error('This post is not belong to this user')
-  // }
+  const targetDeletePost = postTodelete.find(p => p.id === post.id);
+  const copy = { ...targetDeletePost };
 
-  // await post
+  await postRepository.remove(targetDeletePost);
 
-  // if (user.username)
-  return 'Post delete';
+  return copy;
 };

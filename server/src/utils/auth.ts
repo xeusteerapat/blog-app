@@ -4,7 +4,7 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 type User = {
-  id: string;
+  id: number;
   username: string;
   token: string;
 };
