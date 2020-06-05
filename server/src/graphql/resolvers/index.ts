@@ -1,4 +1,4 @@
-import { register, login, users } from './user';
+import { register, login, users, user } from './user';
 import { createPost, updatePost, deletePost } from './post';
 import { posts, post } from './post';
 
@@ -8,6 +8,7 @@ const resolvers = {
     posts,
     post,
     users,
+    user,
   },
   Mutation: {
     register,

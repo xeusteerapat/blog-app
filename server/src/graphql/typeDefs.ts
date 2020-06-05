@@ -22,6 +22,7 @@ const typeDefs = gql`
     posts: [Post]!
     post(postId: ID!): Post
     users: [User]!
+    user(userId: ID!): User!
   }
 
   input RegisterInput {

@@ -104,3 +104,14 @@ export const users = async (parent, args, ctx, info) => {
 
   return users;
 };
+
+export const user = async (parent, { userId }, ctx, info) => {
+  const userRepository = getRepository(User);
+
+  const user = await userRepository.findOne({
+    where: { id: userId },
+    relations: ['posts'],
+  });
+
+  return user;
+};
