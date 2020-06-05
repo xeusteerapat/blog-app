@@ -53,23 +53,22 @@ export const createPost = async (
 
 export const deletePost = async (parent, { postId }, ctx, info) => {
   const user = auth(ctx);
-
   const postRepository = getRepository(Post);
 
-  const post = await postRepository.findOne({ id: postId });
-  const postsWithAuthors = await postRepository.find({ relations: ['author'] });
+  const post = await postRepository.findOne({
+    where: { id: postId },
+    relations: ['author'],
+  });
 
-  const postTodelete = postsWithAuthors.filter(p => p.author.id === user.id);
+  const postToDelete = { ...post };
 
-  const targetDeletePost = postTodelete.find(p => p.id === post.id);
-  if (!targetDeletePost) {
-    throw new Error('Post not found');
+  if (user.id !== post.author.id) {
+    throw new Error('Action not allowed');
+  } else {
+    await postRepository.remove(post);
+
+    return postToDelete;
   }
-  const copy = { ...targetDeletePost };
-
-  await postRepository.remove(targetDeletePost);
-
-  return copy;
 };
 
 export const updatePost = async (
