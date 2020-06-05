@@ -71,3 +71,30 @@ export const deletePost = async (parent, { postId }, ctx, info) => {
 
   return copy;
 };
+
+export const updatePost = async (
+  parent,
+  { postId, data: { title, body } },
+  ctx,
+  info
+) => {
+  const user = auth(ctx);
+  const postRepository = getRepository(Post);
+
+  const post = await postRepository.findOne({
+    where: { id: postId },
+    relations: ['author'],
+  });
+
+  if (user.id !== post.author.id) {
+    throw new Error('Action not allowed');
+  } else {
+    await postRepository.update({ id: postId }, { title, body });
+    const updatedPost = await postRepository.findOne({
+      where: { id: postId },
+      relations: ['author'],
+    });
+
+    return updatedPost;
+  }
+};

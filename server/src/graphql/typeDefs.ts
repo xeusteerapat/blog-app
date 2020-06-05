@@ -7,6 +7,7 @@ const typeDefs = gql`
     email: String!
     password: String!
     token: String!
+    posts: [Post]!
   }
 
   type Post {
@@ -39,6 +40,7 @@ const typeDefs = gql`
     login(username: String!, password: String!): User!
     createPost(data: PostInput!): Post!
     deletePost(postId: ID!): Post!
+    updatePost(postId: ID!, data: PostInput!): Post!
   }
 `;
 
