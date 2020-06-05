@@ -21,6 +21,7 @@ const typeDefs = gql`
     hello: String!
     posts: [Post]!
     post(postId: ID!): Post
+    users: [User]!
   }
 
   input RegisterInput {

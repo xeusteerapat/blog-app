@@ -96,3 +96,11 @@ export const login = async (parent, { username, password }, ctx, info) => {
     }
   }
 };
+
+export const users = async (parent, args, ctx, info) => {
+  const userRepository = getRepository(User);
+
+  const users = await userRepository.find({ relations: ['posts'] });
+
+  return users;
+};

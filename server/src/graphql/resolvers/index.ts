@@ -1,4 +1,4 @@
-import { register, login } from './user';
+import { register, login, users } from './user';
 import { createPost, updatePost, deletePost } from './post';
 import { posts, post } from './post';
 
@@ -7,6 +7,7 @@ const resolvers = {
     hello: () => 'Hello Graphql hahahahaha',
     posts,
     post,
+    users,
   },
   Mutation: {
     register,
