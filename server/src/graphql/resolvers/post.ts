@@ -5,14 +5,17 @@ import auth from '../../utils/auth';
 
 export const posts = async () => {
   const postRepository = getRepository(Post);
-  const posts = await postRepository.find();
+  const posts = await postRepository.find({ relations: ['author'] });
   return posts;
 };
 
 export const post = async (parent, { postId }, ctx, info) => {
   const postRepository = getRepository(Post);
   const post = await postRepository.findOne({
-    id: postId,
+    where: {
+      id: postId,
+    },
+    relations: ['author'],
   });
 
   if (!post) {
@@ -59,6 +62,9 @@ export const deletePost = async (parent, { postId }, ctx, info) => {
   const postTodelete = postsWithAuthors.filter(p => p.author.id === user.id);
 
   const targetDeletePost = postTodelete.find(p => p.id === post.id);
+  if (!targetDeletePost) {
+    throw new Error('Post not found');
+  }
   const copy = { ...targetDeletePost };
 
   await postRepository.remove(targetDeletePost);
