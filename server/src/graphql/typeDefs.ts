@@ -15,6 +15,13 @@ const typeDefs = gql`
     title: String!
     body: String!
     author: User!
+    comments: [Comment]!
+  }
+
+  type Comment {
+    id: ID!
+    comment: String!
+    author: User!
   }
 
   type Query {
@@ -43,6 +50,8 @@ const typeDefs = gql`
     createPost(data: PostInput!): Post!
     deletePost(postId: ID!): Post!
     updatePost(postId: ID!, data: PostInput!): Post!
+    createComment(postId: ID!, comment: String!): Comment!
+    deleteComment(postId: ID!, commentId: ID!): Comment!
   }
 `;
 
