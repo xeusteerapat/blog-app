@@ -5,7 +5,9 @@ import auth from '../../utils/auth';
 
 export const posts = async () => {
   const postRepository = getRepository(Post);
-  const posts = await postRepository.find({ relations: ['author'] });
+  const posts = await postRepository.find({
+    relations: ['author', 'comments'],
+  });
   return posts;
 };
 
@@ -15,7 +17,7 @@ export const post = async (parent, { postId }, ctx, info) => {
     where: {
       id: postId,
     },
-    relations: ['author'],
+    relations: ['author', 'comments'],
   });
 
   if (!post) {

@@ -15,7 +15,7 @@ const typeDefs = gql`
     title: String!
     body: String!
     author: User!
-    comments: [Comment]!
+    comments: [Comment!]!
   }
 
   type Comment {
