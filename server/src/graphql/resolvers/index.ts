@@ -1,6 +1,7 @@
 import { register, login, users, user } from './user';
 import { createPost, updatePost, deletePost } from './post';
 import { posts, post } from './post';
+import { comments, createComment } from './comment';
 
 const resolvers = {
   Query: {
@@ -9,6 +10,7 @@ const resolvers = {
     post,
     users,
     user,
+    comments,
   },
   Mutation: {
     register,
@@ -16,6 +18,7 @@ const resolvers = {
     createPost,
     updatePost,
     deletePost,
+    createComment,
   },
 };
 

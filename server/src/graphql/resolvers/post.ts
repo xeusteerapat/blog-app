@@ -93,7 +93,7 @@ export const updatePost = async (
     await postRepository.update({ id: postId }, { title, body });
     const updatedPost = await postRepository.findOne({
       where: { id: postId },
-      relations: ['author'],
+      relations: ['author', 'comments'],
     });
 
     return updatedPost;

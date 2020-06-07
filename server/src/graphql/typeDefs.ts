@@ -21,6 +21,7 @@ const typeDefs = gql`
   type Comment {
     id: ID!
     comment: String!
+    post: Post!
     author: User!
   }
 
@@ -30,6 +31,7 @@ const typeDefs = gql`
     post(postId: ID!): Post
     users: [User]!
     user(userId: ID!): User!
+    comments: [Comment]!
   }
 
   input RegisterInput {

@@ -19,5 +19,22 @@ export const createComment = async (parent, { postId, comment }, ctx, info) => {
   const post = await postRepository.findOne({ id: postId });
 
   const commentRepository = await getRepository(Comment);
-  const newComment = await commentRepository.create({});
+  const newComment = await commentRepository.create({
+    comment,
+    post,
+    author: user,
+  });
+
+  await commentRepository.save(newComment);
+
+  return newComment;
+};
+
+export const comments = async (parent, { postId, comment }, ctx, info) => {
+  const commentRepository = await getRepository(Comment);
+  const comments = await commentRepository.find({
+    relations: ['author', 'post'],
+  });
+
+  return comments;
 };
