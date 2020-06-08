@@ -8,6 +8,7 @@ const typeDefs = gql`
     password: String!
     token: String!
     posts: [Post!]!
+    comments: [Comment!]!
   }
 
   type Post {

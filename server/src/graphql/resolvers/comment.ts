@@ -29,12 +29,3 @@ export const createComment = async (parent, { postId, comment }, ctx, info) => {
 
   return newComment;
 };
-
-export const comments = async (parent, agrs, ctx, info) => {
-  const commentRepository = await getRepository(Comment)
-    .createQueryBuilder('comment')
-    .leftJoinAndSelect('post.comments', 'postId')
-    .where('post.id = :postId');
-
-  return commentRepository;
-};

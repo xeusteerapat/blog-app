@@ -17,8 +17,10 @@ export class Comment {
   comment: string;
 
   @ManyToOne(type => User, author => author.comments)
+  @JoinColumn({ name: 'authorId' })
   author: User;
 
   @ManyToOne(type => Post, post => post.comments)
+  @JoinColumn({ name: 'postId' })
   post: Post;
 }

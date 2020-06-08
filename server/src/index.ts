@@ -1,11 +1,19 @@
 import { ApolloServer } from 'apollo-server';
-import { createConnection } from 'typeorm';
+import { createConnection, getManager } from 'typeorm';
 import typeDefs from './graphql/typeDefs';
-import resolvers from './graphql/resolvers';
+import Query from './graphql/resolvers/query';
+import Mutation from './graphql/resolvers/mutation';
+import User from './graphql/resolvers/user';
+import Post from './graphql/resolvers/post';
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers,
+  resolvers: {
+    Query,
+    Mutation,
+    User,
+    Post,
+  },
   context: ({ req }) => ({ req }),
 });
 

@@ -4,6 +4,7 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
   OneToMany,
+  JoinColumn,
 } from 'typeorm';
 import { User } from './User';
 import { Comment } from './Comment';
@@ -20,6 +21,7 @@ export class Post {
   body: string;
 
   @ManyToOne(type => User, user => user.posts)
+  @JoinColumn({ name: 'authorId' })
   author: User;
 
   @OneToMany(type => Comment, comment => comment.post)
