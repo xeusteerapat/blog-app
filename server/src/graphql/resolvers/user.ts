@@ -3,6 +3,8 @@ import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import { UserInputError } from 'apollo-server';
 import { User } from './../../entity/User';
+import { Post } from './../../entity/Post';
+import { Comment } from './../../entity/Comment';
 import {
   validateRegisterInput,
   validateLoginInput,
@@ -99,9 +101,7 @@ export const login = async (parent, { username, password }, ctx, info) => {
 
 export const users = async (parent, args, ctx, info) => {
   const userRepository = getRepository(User);
-
-  const users = await userRepository.find({ relations: ['posts'] });
-
+  const users = await userRepository.find({ relations: ['posts', 'comments'] });
   return users;
 };
 
