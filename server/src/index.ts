@@ -1,5 +1,5 @@
 import { ApolloServer } from 'apollo-server';
-import { createConnection, getManager } from 'typeorm';
+import { createConnection } from 'typeorm';
 import typeDefs from './graphql/typeDefs';
 import Query from './graphql/resolvers/query';
 import Mutation from './graphql/resolvers/mutation';

@@ -9,9 +9,6 @@ const Comment = {
       relations: ['comments'],
     });
 
-    console.log('Parent', parent);
-    // console.log('User form DB', users);
-
     const commentToAuthor = users.find(user => user.id === parent.author.id);
     return commentToAuthor;
   },
