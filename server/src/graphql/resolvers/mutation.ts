@@ -7,6 +7,7 @@ import {
 } from './../../utils/validator';
 import { User } from './../../entity/User';
 import { Post } from './../../entity/Post';
+import { Comment } from './../../entity/Comment';
 import { generateToken } from './../../utils/generateToken';
 import * as dotenv from 'dotenv';
 import auth from '../../utils/auth';
@@ -145,6 +146,31 @@ const Mutation = {
 
       return updatedPost;
     }
+  },
+  createComment: async (parent, { postId, comment }, ctx, info) => {
+    const user = auth(ctx);
+
+    if (comment.trim() === '') {
+      throw new UserInputError('Empty comment', {
+        errors: {
+          comment: 'Comment cannot be empty',
+        },
+      });
+    }
+
+    const postRepository = await getRepository(Post);
+    const post = await postRepository.findOne({ id: postId });
+
+    const commentRepository = await getRepository(Comment);
+    const newComment = await commentRepository.create({
+      comment,
+      post,
+      author: user,
+    });
+
+    await commentRepository.save(newComment);
+
+    return newComment;
   },
 };
 
