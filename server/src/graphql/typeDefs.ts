@@ -32,7 +32,7 @@ const typeDefs = gql`
     post(postId: ID!): Post
     users: [User]!
     user(userId: ID!): User!
-    comments: [Comment]!
+    comments: [Comment!]!
   }
 
   input RegisterInput {

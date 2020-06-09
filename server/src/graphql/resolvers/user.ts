@@ -1,4 +1,4 @@
-import { getRepository, createQueryBuilder } from 'typeorm';
+import { getRepository } from 'typeorm';
 import { Post } from '../../entity/Post';
 import { Comment } from '../../entity/Comment';
 
