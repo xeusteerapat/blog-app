@@ -6,7 +6,7 @@ const Post = {
   author: async (parent, args, context, info) => {
     const userRepository = await getRepository(User);
     const users = await userRepository.find({
-      relations: ['posts'],
+      relations: ['posts', 'comments'],
     });
 
     const authorToPost = users.find(user => user.id === parent.author.id);
@@ -15,7 +15,7 @@ const Post = {
   comments: async (parent, args, context, info) => {
     const commentRepository = await getRepository(Comment);
     const comments = await commentRepository.find({
-      relations: ['post'],
+      relations: ['post', 'author'],
     });
 
     const commentToPost = comments.filter(
