@@ -116,6 +116,10 @@ const Mutation = {
       relations: ['author'],
     });
 
+    if (!post) {
+      throw new Error('Post not found');
+    }
+
     const postToDelete = { ...post };
 
     if (user.id !== post.author.id) {
@@ -134,6 +138,10 @@ const Mutation = {
       where: { id: postId },
       relations: ['author'],
     });
+
+    if (!post) {
+      throw new Error('Post not found');
+    }
 
     if (user.id !== post.author.id) {
       throw new Error('Action not allowed');
@@ -182,10 +190,18 @@ const Mutation = {
       relations: ['author', 'comments'],
     });
 
+    if (!post) {
+      throw new Error('Post not found');
+    }
+
     const targetComment = await commentRepository.findOne({
       where: { id: commentId },
       relations: ['author', 'post'],
     });
+
+    if (!targetComment) {
+      throw new Error('Comment not found');
+    }
 
     if (user.id !== targetComment.author.id) {
       throw new Error('Action not allowed');
@@ -200,6 +216,28 @@ const Mutation = {
       });
 
       return updatedComment;
+    }
+  },
+  deleteComment: async (parent, { commentId }, ctx, info) => {
+    const user = auth(ctx);
+    const commentRepository = getRepository(Comment);
+    const comment = await commentRepository.findOne({
+      where: { id: commentId },
+      relations: ['author', 'post'],
+    });
+
+    if (!comment) {
+      throw new Error('Comment not found');
+    }
+
+    const targetComment = { ...comment };
+
+    if (user.id !== comment.author.id) {
+      throw new Error('Action not allowed');
+    } else {
+      await commentRepository.remove(comment);
+
+      return targetComment;
     }
   },
 };
