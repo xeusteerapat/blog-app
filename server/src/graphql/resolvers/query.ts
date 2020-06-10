@@ -50,8 +50,6 @@ const Query = {
       relations: ['author', 'post'],
     });
 
-    // console.log(comments);
-
     return comments;
   },
 };

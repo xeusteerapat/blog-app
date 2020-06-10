@@ -172,6 +172,36 @@ const Mutation = {
 
     return newComment;
   },
+  updateComment: async (parent, { postId, commentId, comment }, ctx, info) => {
+    const user = auth(ctx);
+    const postRepository = getRepository(Post);
+    const commentRepository = getRepository(Comment);
+
+    const post = await postRepository.findOne({
+      where: { id: postId },
+      relations: ['author', 'comments'],
+    });
+
+    const targetComment = await commentRepository.findOne({
+      where: { id: commentId },
+      relations: ['author', 'post'],
+    });
+
+    if (user.id !== targetComment.author.id) {
+      throw new Error('Action not allowed');
+    } else {
+      await commentRepository.update(
+        { id: commentId },
+        { comment, post, author: user }
+      );
+      const updatedComment = await commentRepository.findOne({
+        where: { id: commentId },
+        relations: ['author', 'post'],
+      });
+
+      return updatedComment;
+    }
+  },
 };
 
 export default Mutation;
