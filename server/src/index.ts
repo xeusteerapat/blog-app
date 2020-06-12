@@ -19,8 +19,12 @@ const server = new ApolloServer({
   context: ({ req }) => ({ req }),
 });
 
-createConnection().then(() => {
-  server
-    .listen({ port: 5500 })
-    .then(res => console.log(`🚀 Server is running on port ${res.url} 🚀`));
-});
+createConnection()
+  .then(() => {
+    server
+      .listen({ port: 5500 })
+      .then(res => console.log(`🚀 Server is running on port ${res.url} 🚀`));
+  })
+  .catch(err => {
+    console.log(err);
+  });
