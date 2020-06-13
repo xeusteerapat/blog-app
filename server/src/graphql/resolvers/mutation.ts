@@ -97,6 +97,13 @@ const Mutation = {
       username: user.username,
     });
 
+    if (title.trim() === '') {
+      throw new Error('Post title cannot be empty');
+    }
+    if (body.trim() === '') {
+      throw new Error('Post body cannot be empty');
+    }
+
     const newPost = await postRepository.create({
       title,
       body,

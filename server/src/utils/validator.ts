@@ -28,6 +28,8 @@ export const validateRegisterInput = (
 
   if (password.trim() === '') {
     errors.password = 'Password Email name cannot be empty';
+  } else if (password.length < 8) {
+    errors.confirmPassword = 'Password must be 8 characters or longer';
   } else if (password !== confirmPassword) {
     errors.confirmPassword = 'Password must be match';
   }
