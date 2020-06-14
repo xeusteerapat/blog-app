@@ -8,7 +8,7 @@ import Header from './pages/Header';
 
 const App = () => {
   return (
-    <PageContainer className='container'>
+    <PageContainer>
       <Header />
       <Switch>
         <Route path='/' exact component={Landing} />

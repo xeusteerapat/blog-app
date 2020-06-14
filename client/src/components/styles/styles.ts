@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const PageContainer = styled.div`
   font-family: Arial, Helvetica, sans-serif;
@@ -79,4 +80,20 @@ export const Showcase = styled.div`
   h2 {
     font-size: 2rem;
   }
+`;
+
+export const Button = styled(Link)`
+  display: inline-block;
+  border-radius: 3px;
+  padding: 1rem;
+  margin: 0.5rem 1rem;
+  width: 11rem;
+  font-weight: bold;
+  font-size: 1.25rem;
+  align-items: center;
+  background-color: coral;
+  color: white;
+  border: 2px solid white;
+  cursor: pointer;
+  text-decoration: none;
 `;
