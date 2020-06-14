@@ -10,11 +10,13 @@ const Header = () => {
           <Link to='/'>Home</Link>
         </li>
         <li>
+          <Link to='/create'>Write post</Link>
+        </li>
+        <li>
           <Link to='/about'>About Us</Link>
         </li>
         <li>
-          {' '}
-          Posts<i className='fas fa-angle-down'></i>
+          Posts <i className='fas fa-angle-down'></i>
           <ul>
             <li>
               <Link to='/posts'>All Posts</Link>

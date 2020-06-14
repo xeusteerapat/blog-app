@@ -1,10 +1,12 @@
 import React from 'react';
+import { Showcase } from '../styles/styles';
 
 const Landing = () => {
   return (
-    <div>
-      <h1>Hero will go here</h1>
-    </div>
+    <Showcase>
+      <h1>Write once, publish everywhere</h1>
+      <h2>A place for focused writing.</h2>
+    </Showcase>
   );
 };
 

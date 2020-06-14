@@ -4,7 +4,6 @@ import { BrowserRouter } from 'react-router-dom';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 import App from './components/App';
-import './index.css';
 
 const client = new ApolloClient({
   uri: 'http://localhost:5500',
