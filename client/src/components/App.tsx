@@ -1,49 +1,21 @@
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
-
-interface Post {
-  id: string;
-  title: string;
-  body: string;
-}
-
-interface User {
-  id: string;
-  username: string;
-  posts: Post[];
-}
-
-const GET_USERS = gql`
-  query {
-    users {
-      id
-      username
-      posts {
-        id
-        title
-        body
-      }
-    }
-  }
-`;
+import { Route, Switch } from 'react-router-dom';
+import { PageContainer } from './styles/styles';
+import Landing from './pages/Landing';
+import About from './pages/About';
+import Posts from './pages/Posts';
+import Header from './pages/Header';
 
 const App = () => {
-  const { loading, data } = useQuery(GET_USERS);
-
-  if (loading) {
-    return <h1>Loading...</h1>;
-  }
-
-  const { users } = data;
   return (
-    <div className='App'>
-      <ul>
-        {users.map((user: User) => (
-          <li key={user.id}>{user.username}</li>
-        ))}
-      </ul>
-    </div>
+    <PageContainer className='container'>
+      <Header />
+      <Switch>
+        <Route path='/' exact component={Landing} />
+        <Route path='/about' exact component={About} />
+        <Route path='/posts' exact component={Posts} />
+      </Switch>
+    </PageContainer>
   );
 };
 
