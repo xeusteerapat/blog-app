@@ -1,5 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useMutation } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 import {
   StyledFormWrapper,
   StyledForm,
@@ -16,17 +18,52 @@ type FormData = {
   confirmPassword: string;
 };
 
+const REGISTER = gql`
+  mutation register(
+    $username: String!
+    $email: String!
+    $password: String!
+    $confirmPassword: String!
+  ) {
+    register(
+      data: {
+        username: $username
+        email: $email
+        password: $password
+        confirmPassword: $confirmPassword
+      }
+    ) {
+      id
+      username
+      email
+      token
+    }
+  }
+`;
+
 const Register = () => {
-  const { register, setValue, handleSubmit, errors } = useForm<FormData>();
+  const { register: registerUser, setValue, handleSubmit, errors } = useForm<
+    FormData
+  >();
+  const [register, { data }] = useMutation(REGISTER);
   const onSubmit = handleSubmit(
     ({ username, email, password, confirmPassword }) => {
-      console.log({ username, email, password, confirmPassword });
+      register({
+        variables: {
+          username,
+          email,
+          password,
+          confirmPassword,
+        },
+      });
       setValue('username', '');
       setValue('email', '');
       setValue('password', '');
       setValue('confirmPassword', '');
     }
   );
+
+  console.log(data);
 
   return (
     <StyledFormWrapper>
@@ -37,7 +74,7 @@ const Register = () => {
           <StyledInput
             type='text'
             name='username'
-            ref={register({
+            ref={registerUser({
               required: true,
               minLength: 8,
             })}
@@ -53,7 +90,7 @@ const Register = () => {
           <StyledInput
             type='email'
             name='email'
-            ref={register({
+            ref={registerUser({
               required: true,
             })}
           />
@@ -64,7 +101,7 @@ const Register = () => {
           <StyledInput
             type='password'
             name='password'
-            ref={register({
+            ref={registerUser({
               required: true,
               minLength: 8,
             })}
@@ -80,7 +117,7 @@ const Register = () => {
           <StyledInput
             type='password'
             name='confirmPassword'
-            ref={register({
+            ref={registerUser({
               required: true,
               minLength: 8,
             })}
