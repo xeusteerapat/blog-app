@@ -1,10 +1,55 @@
 import React from 'react';
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+import { PostContainer, CardContainer } from '../styles/styles';
+
+interface User {
+  id: string;
+  username: string;
+}
+
+interface Post {
+  id: string;
+  title: string;
+  body: string;
+  author: User;
+}
+
+const POST_QUERY = gql`
+  query {
+    posts {
+      id
+      title
+      body
+      author {
+        id
+        username
+      }
+    }
+  }
+`;
 
 const Posts = () => {
+  const { data, loading } = useQuery(POST_QUERY);
+
+  if (loading) {
+    return <h1>Loading</h1>;
+  }
+
+  const { posts } = data;
+
   return (
-    <div>
-      <h1>Posts</h1>
-    </div>
+    <>
+      <h1 style={{ textAlign: 'center' }}>All Posts</h1>
+      <PostContainer>
+        {posts.map((post: Post) => (
+          <CardContainer key={post.id}>
+            <h2>{post.title}</h2>
+            {post.body}
+          </CardContainer>
+        ))}
+      </PostContainer>
+    </>
   );
 };
 
