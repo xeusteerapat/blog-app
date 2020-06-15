@@ -5,6 +5,8 @@ import {
   StyledForm,
   StyledInput,
   StyledButton,
+  StyledInputWrapper,
+  ValidateError,
 } from '../styles/styles';
 
 type FormData = {
@@ -30,17 +32,66 @@ const Register = () => {
     <StyledFormWrapper>
       <StyledForm onSubmit={onSubmit}>
         <h2>Register</h2>
-        <label htmlFor='username'>Username</label>
-        <StyledInput type='text' name='username' ref={register} />
-        <label htmlFor='email'>Email</label>
-        <StyledInput type='email' name='email' ref={register} />
-        <label htmlFor='password'>Password</label>
-        <StyledInput type='password' name='password' ref={register} />
-        <label htmlFor='confirmPassword'>Confirm Password</label>
-        <StyledInput type='password' name='confirmPassword' ref={register} />
-        <StyledButton type='submit' onClick={() => {}}>
-          Register
-        </StyledButton>
+        <StyledInputWrapper>
+          <label htmlFor='username'>Username</label>
+          <StyledInput
+            type='text'
+            name='username'
+            ref={register({
+              required: true,
+              minLength: 8,
+            })}
+          />
+          <ValidateError>
+            {errors.username?.type === 'required' && 'Username is required'}
+            {errors.username?.type === 'minLength' &&
+              'Username must be greater than 8 characters'}
+          </ValidateError>
+        </StyledInputWrapper>
+        <StyledInputWrapper>
+          <label htmlFor='email'>Email</label>
+          <StyledInput
+            type='email'
+            name='email'
+            ref={register({
+              required: true,
+            })}
+          />
+          <ValidateError>{errors.email && 'Email is required'}</ValidateError>
+        </StyledInputWrapper>
+        <StyledInputWrapper>
+          <label htmlFor='password'>Password</label>
+          <StyledInput
+            type='password'
+            name='password'
+            ref={register({
+              required: true,
+              minLength: 8,
+            })}
+          />
+          <ValidateError>
+            {errors.password?.type === 'required' && 'Password is required'}
+            {errors.password?.type === 'minLength' &&
+              'Password must be greater than 8 characters'}
+          </ValidateError>
+        </StyledInputWrapper>
+        <StyledInputWrapper>
+          <label htmlFor='confirmPassword'>Confirm Password</label>
+          <StyledInput
+            type='password'
+            name='confirmPassword'
+            ref={register({
+              required: true,
+              minLength: 8,
+            })}
+          />
+          <ValidateError>
+            {errors.password?.type === 'required' && 'Password is required'}
+            {errors.password?.type === 'minLength' &&
+              'Password must be greater than 8 characters'}
+          </ValidateError>
+        </StyledInputWrapper>
+        <StyledButton type='submit'>Register</StyledButton>
       </StyledForm>
     </StyledFormWrapper>
   );

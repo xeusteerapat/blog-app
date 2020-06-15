@@ -128,7 +128,7 @@ export const CardContainer = styled.div`
 const sharedStyles = css`
   background-color: #eee;
   height: 40px;
-  border-radius: 5px;
+  border-radius: 3px;
   border: 1px solid #ddd;
   margin: 10px 0 20px 0;
   padding: 20px;
@@ -139,6 +139,7 @@ export const StyledFormWrapper = styled.div`
   display: flex;
   justify-content: center;
   padding: 0 20px;
+  align-items: center;
 `;
 
 export const StyledForm = styled.form`
@@ -162,13 +163,21 @@ export const StyledInput = styled.input`
   ${sharedStyles}
 `;
 
+export const StyledInputWrapper = styled.div`
+  margin-bottom: 1rem;
+`;
+
+export const ValidateError = styled.small`
+  color: red;
+`;
+
 export const StyledButton = styled.button`
   display: block;
   background-color: coral;
   color: #fff;
   font-size: 0.9rem;
   border: 0;
-  border-radius: 5px;
+  border-radius: 3px;
   height: 40px;
   padding: 0 20px;
   cursor: pointer;
