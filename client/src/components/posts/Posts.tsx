@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { PostContainer, CardContainer } from '../styles/styles';
@@ -44,8 +45,14 @@ const Posts = () => {
       <PostContainer>
         {posts.map((post: Post) => (
           <CardContainer key={post.id}>
-            <h2>{post.title}</h2>
-            {post.body}
+            <Link to={`/post/${post.id}`}>
+              <h2>{post.title}</h2>
+              {post.body}
+            </Link>
+            <br />
+            by
+            <br />
+            {post.author.username}
           </CardContainer>
         ))}
       </PostContainer>

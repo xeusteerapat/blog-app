@@ -25,6 +25,12 @@ const Header = () => {
             <li>Archived</li>
           </ul>
         </li>
+        <li>
+          <Link to='/login'>Login</Link>
+        </li>
+        <li>
+          <Link to='/register'>Register</Link>
+        </li>
       </ul>
     </Navbar>
   );

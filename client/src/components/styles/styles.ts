@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const PageContainer = styled.div`
@@ -113,4 +113,64 @@ export const CardContainer = styled.div`
   box-shadow: #091e4240 0px 1px 0px 0px;
   color: white;
   flex-grow: 1;
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
+
+  a:visited {
+    color: white;
+  }
+`;
+
+// Form
+const sharedStyles = css`
+  background-color: #eee;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  margin: 10px 0 20px 0;
+  padding: 20px;
+  box-sizing: border-box;
+`;
+
+export const StyledFormWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+`;
+
+export const StyledForm = styled.form`
+  width: 100%;
+  max-width: 700px;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+  align-items: center;
+
+  h2 {
+    text-align: center;
+  }
+`;
+
+export const StyledInput = styled.input`
+  display: block;
+  width: 100%;
+  ${sharedStyles}
+`;
+
+export const StyledButton = styled.button`
+  display: block;
+  background-color: coral;
+  color: #fff;
+  font-size: 0.9rem;
+  border: 0;
+  border-radius: 5px;
+  height: 40px;
+  padding: 0 20px;
+  cursor: pointer;
+  box-sizing: border-box;
 `;
