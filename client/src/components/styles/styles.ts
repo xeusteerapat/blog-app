@@ -140,6 +140,7 @@ export const StyledFormWrapper = styled.div`
   justify-content: center;
   padding: 0 20px;
   align-items: center;
+  margin-top: 1rem;
 `;
 
 export const StyledForm = styled.form`
@@ -147,7 +148,7 @@ export const StyledForm = styled.form`
   max-width: 700px;
   padding: 40px;
   background-color: #fff;
-  border-radius: 10px;
+  border-radius: 5px;
   box-sizing: border-box;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
   align-items: center;
@@ -182,4 +183,17 @@ export const StyledButton = styled.button`
   padding: 0 20px;
   cursor: pointer;
   box-sizing: border-box;
+`;
+
+export const ErrorBox = styled.div`
+  display: block;
+  position: relative;
+  text-align: center;
+  max-width: 660px;
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  margin-bottom: 1rem;
+  margin: 0 auto;
+  border-radius: 5px;
 `;
