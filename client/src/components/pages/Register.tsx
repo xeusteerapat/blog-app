@@ -46,7 +46,9 @@ const Register = () => {
   const { register: registerUser, setValue, handleSubmit, errors } = useForm<
     FormData
   >();
-  const [register, { loading, error, data }] = useMutation(REGISTER);
+  const [register, { loading, error, data }] = useMutation(REGISTER, {
+    onError: () => null,
+  });
   const onSubmit = handleSubmit(
     ({ username, email, password, confirmPassword }) => {
       register({
