@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
+import Spinner from '../misc/Spinner';
 import {
   StyledFormWrapper,
   StyledForm,
@@ -42,13 +43,18 @@ const REGISTER = gql`
   }
 `;
 
-const Register = () => {
+const Register = (props: any) => {
   const { register: registerUser, setValue, handleSubmit, errors } = useForm<
     FormData
   >();
-  const [register, { loading, error, data }] = useMutation(REGISTER, {
+
+  const [register, { loading, error }] = useMutation(REGISTER, {
+    update: (_, result) => {
+      props.history.push('/');
+    },
     onError: () => null,
   });
+
   const onSubmit = handleSubmit(
     ({ username, email, password, confirmPassword }) => {
       register({
@@ -66,7 +72,7 @@ const Register = () => {
     }
   );
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Spinner />;
 
   return (
     <>

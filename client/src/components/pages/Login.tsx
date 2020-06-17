@@ -17,7 +17,6 @@ type FormData = {
 const Login = () => {
   const { register, setValue, handleSubmit, errors } = useForm<FormData>();
   const onSubmit = handleSubmit(({ username, password }) => {
-    console.log({ username, password });
     setValue('username', '');
     setValue('password', '');
   });
