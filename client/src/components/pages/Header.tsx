@@ -7,8 +7,6 @@ import { AuthContext } from '../../context/auth';
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
 
-  console.log('user in menu', user);
-
   return (
     <Navbar>
       <ul>

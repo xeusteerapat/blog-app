@@ -39,7 +39,6 @@ const authReducer = (state: Userdata, action: Action) => {
         token: action.payload.token,
       };
     case 'LOGOUT':
-      console.log(action.payload);
       return {
         ...state,
         id: '',
@@ -67,8 +66,6 @@ const AuthProvider = (props: any) => {
       payload: null,
     });
   };
-
-  console.log('state from auth', state);
 
   return (
     <AuthContext.Provider

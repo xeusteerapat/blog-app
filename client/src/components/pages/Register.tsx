@@ -53,7 +53,7 @@ const Register = (props: any) => {
 
   const [register, { loading, error }] = useMutation(REGISTER, {
     update: (_, result) => {
-      authContext.login(result.data.login);
+      authContext.login(result.data.register);
       props.history.push('/');
     },
     onError: () => null,
