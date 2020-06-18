@@ -1,6 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+
 import { PageContainer } from './styles/styles';
+
 import Landing from './pages/Landing';
 import About from './pages/About';
 import Posts from './posts/Posts';

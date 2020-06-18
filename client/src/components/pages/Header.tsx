@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar } from '../styles/styles';
 
+import { AuthContext } from '../../context/auth';
+
 const Header = () => {
+  const { user, logout } = useContext(AuthContext);
+
+  console.log('user in menu', user);
+
   return (
     <Navbar>
       <ul>
@@ -25,20 +31,42 @@ const Header = () => {
             <li>Archived</li>
           </ul>
         </li>
-        <li
-          style={{
-            float: 'right',
-          }}
-        >
-          <Link to='/login'>Login</Link>
-        </li>
-        <li
-          style={{
-            float: 'right',
-          }}
-        >
-          <Link to='/register'>Register</Link>
-        </li>
+        {user.token ? (
+          <>
+            <li
+              style={{
+                float: 'right',
+              }}
+            >
+              <Link to='/login'>{user.username}</Link>
+            </li>
+            <li
+              style={{
+                float: 'right',
+              }}
+              onClick={logout}
+            >
+              Logout
+            </li>
+          </>
+        ) : (
+          <>
+            <li
+              style={{
+                float: 'right',
+              }}
+            >
+              <Link to='/login'>Login</Link>
+            </li>
+            <li
+              style={{
+                float: 'right',
+              }}
+            >
+              <Link to='/register'>Register</Link>
+            </li>
+          </>
+        )}
       </ul>
     </Navbar>
   );

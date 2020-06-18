@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
@@ -12,6 +12,8 @@ import {
   ValidateError,
   ErrorBox,
 } from '../styles/styles';
+
+import { AuthContext } from '../../context/auth';
 
 type FormData = {
   username: string;
@@ -44,12 +46,14 @@ const REGISTER = gql`
 `;
 
 const Register = (props: any) => {
+  const authContext = useContext(AuthContext);
   const { register: registerUser, setValue, handleSubmit, errors } = useForm<
     FormData
   >();
 
   const [register, { loading, error }] = useMutation(REGISTER, {
     update: (_, result) => {
+      authContext.login(result.data.login);
       props.history.push('/');
     },
     onError: () => null,

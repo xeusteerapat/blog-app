@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { PostContainer, CardContainer } from '../styles/styles';
+import Spinner from '../misc/Spinner';
 
 interface User {
   id: string;
@@ -33,9 +34,7 @@ const POST_QUERY = gql`
 const Posts = () => {
   const { data, loading } = useQuery(POST_QUERY);
 
-  if (loading) {
-    return <h1>Loading</h1>;
-  }
+  if (loading) return <Spinner />;
 
   const { posts } = data;
 
