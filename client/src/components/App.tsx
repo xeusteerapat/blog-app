@@ -10,6 +10,7 @@ import CreatePost from './posts/CreatePost';
 import Header from './pages/Header';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import Profile from './pages/Profile';
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route path='/create' exact component={CreatePost} />
         <Route path='/register' exact component={Register} />
         <Route path='/login' exact component={Login} />
+        <Route path='/profile' exact component={Profile} />
       </Switch>
     </PageContainer>
   );

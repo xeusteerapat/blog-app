@@ -1,11 +1,24 @@
 import React, { useContext } from 'react';
+import jwtDecode from 'jwt-decode';
 import { Link } from 'react-router-dom';
 import { Navbar } from '../styles/styles';
 
 import { AuthContext } from '../../context/auth';
 
 const Header = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { logout } = useContext(AuthContext);
+  let userInfo;
+  if (localStorage.getItem('accessToken')) {
+    const decodedToken: any = jwtDecode(
+      localStorage.getItem('accessToken') || '{}'
+    );
+
+    if (decodedToken.exp * 1000 < Date.now()) {
+      localStorage.removeItem('accessToken');
+    } else {
+      userInfo = decodedToken;
+    }
+  }
 
   return (
     <Navbar>
@@ -29,14 +42,14 @@ const Header = () => {
             <li>Archived</li>
           </ul>
         </li>
-        {user.token ? (
+        {userInfo ? (
           <>
             <li
               style={{
                 float: 'right',
               }}
             >
-              <Link to='/login'>{user.username}</Link>
+              <Link to='/profile'>{userInfo.username}</Link>
             </li>
             <li
               style={{
