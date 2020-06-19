@@ -67,6 +67,10 @@ const AuthProvider = (props: any) => {
       type: 'LOGOUT',
       payload: null,
     });
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
   };
 
   return (
