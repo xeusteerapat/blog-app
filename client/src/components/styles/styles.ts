@@ -197,3 +197,7 @@ export const ErrorBox = styled.div`
   margin: 0 auto;
   border-radius: 5px;
 `;
+
+export const Content = styled.p`
+  font-size: 1.3rem;
+`;

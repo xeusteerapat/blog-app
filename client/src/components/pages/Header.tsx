@@ -7,6 +7,7 @@ import { AuthContext } from '../../context/auth';
 
 const Header = () => {
   const { logout } = useContext(AuthContext);
+
   let userInfo;
   if (localStorage.getItem('accessToken')) {
     const decodedToken: any = jwtDecode(
