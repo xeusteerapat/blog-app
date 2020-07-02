@@ -12,6 +12,7 @@ export const PageContainer = styled.div`
 export const Navbar = styled.nav`
   ul {
     list-style: none;
+    padding-left: 0;
   }
 
   ul li {
@@ -45,7 +46,7 @@ export const Navbar = styled.nav`
   ul li:hover ul {
     display: block;
     position: absolute;
-    left: -40px;
+    left: 0;
     width: 200px;
     margin-top: 1rem;
   }
