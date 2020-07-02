@@ -17,7 +17,7 @@ interface Post {
   author: User;
 }
 
-const POST_QUERY = gql`
+const POSTS_QUERY = gql`
   query {
     posts {
       id
@@ -32,7 +32,7 @@ const POST_QUERY = gql`
 `;
 
 const Posts = () => {
-  const { data, loading } = useQuery(POST_QUERY);
+  const { data, loading } = useQuery(POSTS_QUERY);
 
   if (loading) return <Spinner />;
 

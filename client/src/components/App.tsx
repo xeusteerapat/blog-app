@@ -11,6 +11,7 @@ import Header from './pages/Header';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
+import Post from './posts/Post';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route path='/' exact component={Landing} />
         <Route path='/about' exact component={About} />
         <Route path='/posts' exact component={Posts} />
+        <Route path='/post/:id' exact component={Post} />
         <Route path='/create' exact component={CreatePost} />
         <Route path='/register' exact component={Register} />
         <Route path='/login' exact component={Login} />
