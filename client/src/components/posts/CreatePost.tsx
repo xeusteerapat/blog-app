@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { useForm } from 'react-hook-form';
 
 import {
   StyledFormWrapper,
@@ -15,11 +16,14 @@ import {
 const CreatePost = () => {
   const accessToken = localStorage.getItem('accessToken');
 
-  const [value, setValue] = useState('');
-
-  const handleChange = (e: React.FormEventHandler, editor: any) => {
-    console.log(editor.getData());
+  type FormData = {
+    title: string;
+    body: string;
   };
+
+  const { register: createPost, setValue, handleSubmit, errors } = useForm<
+    FormData
+  >();
 
   if (!accessToken) {
     return (
@@ -39,7 +43,7 @@ const CreatePost = () => {
             <StyledInput type='text' name='title' />
           </StyledInputWrapper>
           <StyledInputWrapper>
-            <CKEditor editor={ClassicEditor} onChange={handleChange} />
+            <CKEditor editor={ClassicEditor} />
           </StyledInputWrapper>
           <StyledButton type='submit'>Create Post</StyledButton>
         </StyledForm>
