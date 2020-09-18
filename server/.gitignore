@@ -119,4 +119,3 @@ dist
 # TypeORM configuration
 ormconfig.json
 .vercel
-vercel.json
