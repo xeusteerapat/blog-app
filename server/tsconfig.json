@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
+    "outDir": "dist",
+    "rootDir": "./src",
     "lib": ["es5", "es6", "dom"],
     "target": "es5",
     "module": "commonjs",
@@ -8,5 +9,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "esModuleInterop": true
-  }
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"]
 }
