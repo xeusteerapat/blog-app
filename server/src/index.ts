@@ -17,6 +17,8 @@ const server = new ApolloServer({
     Comment,
   },
   context: ({ req }) => ({ req }),
+  playground: true,
+  introspection: true,
 });
 
 createConnection()
