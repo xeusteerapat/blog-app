@@ -118,3 +118,4 @@ dist
 
 # TypeORM configuration
 ormconfig.json
+.vercel
