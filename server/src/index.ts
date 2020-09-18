@@ -1,4 +1,4 @@
-import { ApolloServer } from 'apollo-server';
+import { ApolloServer } from '@saeris/apollo-server-vercel';
 import { createConnection } from 'typeorm';
 import typeDefs from './graphql/schema';
 import Query from './graphql/resolvers/query';
@@ -19,13 +19,13 @@ const server = new ApolloServer({
   context: ({ req }) => ({ req }),
   playground: true,
   introspection: true,
-});
+}).createHandler();
 
 createConnection()
   .then(() => {
-    server
-      .listen({ port: 5500 })
-      .then(res => console.log(`🚀 Server is running on port ${res.url} 🚀`));
+    server;
+    // .listen({ port: 5500 })
+    // .then(res => console.log(`🚀 Server is running on port ${res.url} 🚀`));
   })
   .catch(err => {
     console.log(err);
