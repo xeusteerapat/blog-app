@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --exec ts-node src/index.ts",
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p .",
     "start": "node dist/index.js"
   },
   "keywords": [],
@@ -37,6 +37,5 @@
     "nodemon": "^2.0.4",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.3"
-  },
-  "type": "module"
+  }
 }
