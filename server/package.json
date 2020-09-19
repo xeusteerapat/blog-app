@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon --exec ts-node src/index.ts",
     "build": "tsc -p tsconfig.json",
-    "start": "node --experimental-modules dist/index.js"
+    "start": "node --experimental-modules dist/index.mjs"
   },
   "keywords": [],
   "author": "",
