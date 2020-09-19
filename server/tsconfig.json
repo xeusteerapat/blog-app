@@ -10,6 +10,7 @@
     "experimentalDecorators": true,
     "esModuleInterop": true
   },
+  "compileOnSave": false,
   "include": ["**/*.ts"],
   "exclude": ["node_modules"]
 }
