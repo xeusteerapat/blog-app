@@ -22,11 +22,9 @@ const server = new ApolloServer({
     Comment,
   },
   context: ({ req }) => ({ req }),
-  playground: true,
-  introspection: true,
 });
 
-server.applyMiddleware({ app, path: '/graphql' });
+server.applyMiddleware({ app });
 
 createConnection()
   .then(() => {
