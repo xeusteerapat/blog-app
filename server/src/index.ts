@@ -9,7 +9,6 @@ import User from './graphql/resolvers/user';
 import Post from './graphql/resolvers/post';
 import Comment from './graphql/resolvers/comment';
 import config from './ormconfig';
-console.log(config);
 
 const app = express();
 app.use(cors());
