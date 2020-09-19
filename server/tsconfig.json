@@ -3,15 +3,15 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "lib": ["es5", "es6", "dom"],
-    "target": "es2017",
+    "target": "es6",
     "module": "commonjs",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
-  "baseUrl": ".",
   "include": ["src/*.ts"],
-  "exclude": ["node_modules"],
-  "extensions": [".ts", ".js"]
+  "exclude": ["node_modules"]
 }
