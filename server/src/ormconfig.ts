@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-export = {
+export default {
   host: process.env.TYPEORM_HOST,
   type: process.env.TYPEORM_CONNECTION,
   port: process.env.TYPEORM_PORT,
@@ -11,4 +11,4 @@ export = {
   entities: [process.env.TYPEORM_ENTITIES],
   synchronize: process.env.TYPEORM_SYNCHRONIZE,
   logging: process.env.TYPEORM_LOGGING,
-} as const;
+};
