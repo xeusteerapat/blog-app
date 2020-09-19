@@ -26,7 +26,7 @@ const server = new ApolloServer({
   introspection: true,
 });
 
-server.applyMiddleware({ app });
+server.applyMiddleware({ app, path: '/graphql' });
 
 createConnection()
   .then(() => {
