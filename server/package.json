@@ -25,7 +25,7 @@
     "jsonwebtoken": "^9.0.0",
     "mysql2": "^2.1.0",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.25"
+    "typeorm": "^0.3.14"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
